@@ -18,7 +18,9 @@ def make_api_request(base_url, subreddit, keyword, end_timestamp: int = None, st
             query += f'&after={start_timestamp}'
         if end_timestamp:
             query += f'&before={end_timestamp}'
-        return requests.get(query).json()['data']
+        res = requests.get(query)
+        print(res)
+        return res.json()['data']
     except Exception as e:
         logger.error(e)
 
