@@ -2,6 +2,9 @@ import random
 import requests
 from time import sleep
 from .utils import get_datetime_from_unix
+import logging
+
+logger = logging.root
 
 
 def make_api_request(base_url, subreddit, keyword, end_timestamp: int = None, start_timestamp: int = None):
@@ -53,8 +56,8 @@ def scrape_from_date_to_date(base_url, subreddit, keyword, starttime_unix: int, 
             current_query_last_post_timestamp = data[-1]['created_utc']
             current_query_last_post_datetime = get_datetime_from_unix(current_query_last_post_timestamp)
 
-            print(f'Scraping step {i + 1} (since {current_query_last_post_datetime} till '
-                  f'{current_query_first_post_datetime})')
+            logger.debug(f'Scraping step {i + 1} (since {current_query_last_post_datetime} till '
+                         f'{current_query_first_post_datetime})')
 
             latest_data.extend(data)
             i += 1
@@ -65,7 +68,7 @@ def scrape_from_date_to_date(base_url, subreddit, keyword, starttime_unix: int, 
     sleep(random.randint(1, 5))
     latest_data = list(filter(lambda x: x['created_utc'] > starttime_unix, latest_data))
 
-    print("Items scraped:", len(latest_data))
+    logger.debug(f"Items scraped: {len(latest_data)}")
     return latest_data
 
 
@@ -83,10 +86,9 @@ def scrape_by_number_of_posts(base_url, subreddit, keyword, endtime_unix: int, m
         posts_count += len(data)
         all_data.extend(data)
         query_first_post_datetime, query_last_post_datetime = get_time_borders(data)
-        print(
+        logger.debug(
             f'Scraping step {i + 1} (since {query_last_post_datetime} till '
-            f'{query_first_post_datetime}):',
-            len(data))
+            f'{query_first_post_datetime}): {len(data)}')
         i += 1
     return all_data[:max_posts]
 
@@ -109,5 +111,5 @@ def extract_information(subreddit, item_type, keyword, posts):
                    }
             data_to_serialize.append(obj)
         except Exception as e:
-            print("Exception:", e)
+            logger.debug("Exception:", e)
     return data_to_serialize
