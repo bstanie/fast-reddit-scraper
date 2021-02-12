@@ -5,14 +5,14 @@ from datetime import datetime
 # Define subreddit
 SUBREDDITS = ["all"]
 KEYWORDS = ['BTC', 'Bitcoin', 'ETH', 'Ethereum', 'Tether', 'USDT', 'Polkadot', 'DOT',
-            'Ripple', 'XRP', 'Cardano', 'ADA', 'Chainlink', 'LINK', 'Litecoin', 'LTC',
+            'Ripple', 'XRP', 'Cardano', 'ADA', 'Chainlink', 'Litecoin', 'LTC',
             'Bitcoin Cash', 'BCH', 'Binance Coin', 'Binance', 'BNB', 'Stellar', 'XLM',
             'USD Coin', 'USDC', 'Uniswap', 'UNI', 'Aave', 'Dogecoin', 'DOGE', 'Bitcoin SV',
             'BSV', 'EOS', 'Monero', 'XMR', 'NEM', 'XEM', 'Tron', 'TRX', 'Tezos', 'XTZ', 'Theta',
-            'Synthetix Network Token', 'Synthetix', 'SNX', 'Cosmos', 'ATM', 'VeChain',
-            'VET', 'SushiSwap', 'SUSHI', 'Maker', 'MKR', 'Dai', 'Neo', 'Crypto.com Coin',
-            'Crypto.com', 'CRO', 'Solana', 'SOL', 'UMA', 'Huobi Token', 'HT', 'Binance USD',
-            'BUSD', 'UNUS SE D LEO', 'LEO', 'FTX Token', 'FTT', 'IOTA', 'MIOTA', 'Celsius',
+            'Synthetix Network Token', 'Synthetix', 'SNX', 'Cosmos', 'VeChain',
+            'SushiSwap', 'MKR', 'Dai', 'Neo', 'Crypto.com Coin', 'Crypto.com', 'CRO',
+            'Solana', 'SOL', 'UMA', 'Huobi Token', 'HT', 'Binance USD',
+            'BUSD', 'UNUS SE D LEO', 'LEO', 'FTX Token', 'FTT', 'IOTA', 'MIOTA',
             'CEL', 'Dash', 'DASH', 'Elrond', 'EGLD', 'Avalanche', 'AVAX', 'DefiChain', 'DFI',
             'Filecoin', 'FIL', 'ZCash', 'ZEC', 'The Graph', 'GRT', 'Yearn.Finance', 'YFI',
             'Kusama', 'KSM', 'Decred', 'DCR', 'Revain', 'REV', 'Ethereum Classic', 'ETC']
