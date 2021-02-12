@@ -1,6 +1,6 @@
 import random
 import requests
-from time import sleep
+from time import sleep, time
 from .utils import get_datetime_from_unix
 import logging
 
@@ -8,6 +8,7 @@ logger = logging.root
 
 
 def make_api_request(base_url, subreddit, keyword, end_timestamp: int = None, start_timestamp: int = None):
+    sleep(1)
     query = base_url.format(keyword=keyword)
     if subreddit != 'all':
         query += f'&subreddit={subreddit}'
