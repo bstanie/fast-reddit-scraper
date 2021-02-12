@@ -4,8 +4,8 @@ from datetime import datetime
 
 # Define subreddit
 SUBREDDITS = ["all"]
-KEYWORDS = ['BTC', 'Bitcoin', 'ETH', 'Ethereum', 'Tether', 'USDT', 'Polkadot ', 'DOT ',
-            'Ripple ', 'XRP ', 'Cardano', 'ADA', 'Chainlink', 'LINK', 'Litecoin', 'LTC',
+KEYWORDS = ['BTC', 'Bitcoin', 'ETH', 'Ethereum', 'Tether', 'USDT', 'Polkadot', 'DOT',
+            'Ripple', 'XRP', 'Cardano', 'ADA', 'Chainlink', 'LINK', 'Litecoin', 'LTC',
             'Bitcoin Cash', 'BCH', 'Binance Coin', 'Binance', 'BNB', 'Stellar', 'XLM',
             'USD Coin', 'USDC', 'Uniswap', 'UNI', 'Aave', 'Dogecoin', 'DOGE', 'Bitcoin SV',
             'BSV', 'EOS', 'Monero', 'XMR', 'NEM', 'XEM', 'Tron', 'TRX', 'Tezos', 'XTZ', 'Theta',
