@@ -8,21 +8,21 @@ logger = logging.root
 
 
 def make_api_request(base_url, subreddit, keyword, end_timestamp: int = None, start_timestamp: int = None):
-    try:
-        query = base_url.format(keyword=keyword)
-        if subreddit != 'all':
-            query += f'&subreddit={subreddit}'
-        if keyword != 'all':
-            query += f'&q={keyword}'
-        if start_timestamp:
-            query += f'&after={start_timestamp}'
-        if end_timestamp:
-            query += f'&before={end_timestamp}'
-        res = requests.get(query)
-        print(res)
+    query = base_url.format(keyword=keyword)
+    if subreddit != 'all':
+        query += f'&subreddit={subreddit}'
+    if keyword != 'all':
+        query += f'&q={keyword}'
+    if start_timestamp:
+        query += f'&after={start_timestamp}'
+    if end_timestamp:
+        query += f'&before={end_timestamp}'
+    res = requests.get(query)
+    if res.status_code != 200:
+        logger.error(res.status_code, res.text)
+        return []
+    else:
         return res.json()['data']
-    except Exception as e:
-        logger.error(e)
 
 
 def get_data_no_starttime(base_url, subreddit, keyword, end_timestamp):
@@ -66,7 +66,6 @@ def scrape_from_date_to_date(base_url, subreddit, keyword, starttime_unix: int, 
 
             latest_data.extend(data)
             i += 1
-
         else:
             break
 

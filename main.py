@@ -61,16 +61,15 @@ if __name__ == '__main__':
                         f"Extracted {len(posts)} '{item_type}' from subreddit '{subreddit}' with a keyword '{keyword}'")
                     serialize_posts = extract_information(subreddit, item_type, keyword, posts)
 
-                    if len(serialize_posts) > 0:
-                        if os.path.exists(file_name):
-                            with open(file_name, 'r') as f:
-                                subreddit_data = json.load(f)
-                                subreddit_data.extend(serialize_posts)
-                            with open(file_name, 'w') as f:
-                                json.dump(subreddit_data, f)
-                        else:
-                            with open(file_name, 'w') as f:
-                                json.dump(serialize_posts, f)
+                    if os.path.exists(file_name):
+                        with open(file_name, 'r') as f:
+                            subreddit_data = json.load(f)
+                            subreddit_data.extend(serialize_posts)
+                        with open(file_name, 'w') as f:
+                            json.dump(subreddit_data, f)
+                    else:
+                        with open(file_name, 'w') as f:
+                            json.dump(serialize_posts, f)
 
         this_day_timestamp = previous_day_timestamp
 
