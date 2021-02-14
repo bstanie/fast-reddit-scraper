@@ -112,7 +112,7 @@ def extract_information(subreddit, item_type, keyword, posts):
                    'body': post.get("body"),
                    "keyword": keyword,
                    "type": item_type,
-                   "num_comments": post.get("num_comments")
+                   "num_comments": post.get("num_comments",0)
                    }
             data_to_serialize.append(obj)
         except Exception as e:
