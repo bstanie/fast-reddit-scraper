@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # --------------------CHANGE HERE------------------------------------------
 
@@ -19,7 +19,7 @@ KEYWORDS = ['BTC', 'Bitcoin', 'ETH', 'Ethereum', 'Tether', 'USDT', 'Polkadot', '
 
 # You can EITHER choose desired posts number (i.e 10000) or limit posts from start date and time
 DESIRED_POST_NUMBER = 0
-START_TIMESTAMP = datetime(2021, 2, 13)  # example of date: START_TIMESTAMP = datetime(2020,1,1)
+START_TIMESTAMP = datetime.now() - timedelta(1)  # example of date: START_TIMESTAMP = datetime(2020,1,1)
 END_TIMESTAMP = datetime.now()  # example of arbitrary date: END_TIMESTAMP = datetime(2020,3,1)
 
 # -----------------------------------------------------------------------------------
