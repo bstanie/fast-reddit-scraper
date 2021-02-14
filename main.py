@@ -3,7 +3,8 @@ import logging
 import os
 import time
 import datetime
-
+from collections import defaultdict
+import pandas as pd
 import tqdm as tqdm
 
 from app.conf import DESIRED_POST_NUMBER, START_TIMESTAMP, END_TIMESTAMP, SUBREDDITS, BASE_URLS, KEYWORDS, \
@@ -74,9 +75,42 @@ def run():
                         f"'{subreddit}' with a keyword '{keyword}'")
 
         this_day_timestamp = previous_day_timestamp
+        make_report(datetime_str)
 
     end_time = time.time()
     logger.info(f"Total time:  {end_time - start_time} seconds")
+
+
+def make_report(datetime_str):
+    dfs = []
+    file_path = f"data/data_{datetime_str}.json"
+    with open(file_path, "r") as f:
+        raw_data = json.load(f)
+        data = []
+
+        for item in raw_data:
+            if type(item) == list:
+                data.extend(item)
+            else:
+                data.append(item)
+
+    result = defaultdict(lambda: defaultdict(int))
+
+    for i in data:
+        keyword = i["keyword"]
+        comments = i["num_comments"]
+        if i["type"] == "posts":
+            result[keyword]["num_keyword_posts"] += 1
+            result[keyword]["num_comments"] += comments
+        elif i["type"] == "comments":
+            result[keyword]["num_keyword_comments"] += 1
+    df = pd.DataFrame(result).T
+    df["date"] = file_path.split("_")[1].split(".")[0]
+
+    dfs.append(df)
+    stat_df = pd.concat(dfs).reset_index().rename(columns={"index": "keyword"}).sort_values(["keyword", "date"])
+    stat_df = stat_df[["date", "keyword", "num_keyword_posts", "num_comments", "num_keyword_comments"]]
+    stat_df.to_csv(f"reddit_crypto_stat_{datetime_str}.csv", index=False)
 
 
 def make_parent_post_filter_chunks(ids, chunk_size=20):
