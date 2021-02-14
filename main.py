@@ -19,10 +19,10 @@ if not os.path.exists("data"):
     os.mkdir("data")
 
 
-def get_parent_post_ids(file_name):
+def get_parent_post_ids(file_name, keyword):
     with open(file_name, "r") as f:
         posts = json.load(f)
-        ids = list(set([post["post_id"] for post in posts if post["num_comments"] > 0]))
+        ids = list(set([post["post_id"] for post in posts if post["num_comments"] > 0 and post["keyword"] == keyword]))
     return ids
 
 
@@ -62,7 +62,7 @@ def run():
                     total_comments = 0
                     logger.debug("Scraping comments for posts")
                     item_type = "comments"
-                    parent_post_ids = get_parent_post_ids(file_name)
+                    parent_post_ids = get_parent_post_ids(file_name, keyword)
                     parent_post_chunks = make_parent_post_filter_chunks(parent_post_ids)
                     for chu in tqdm.tqdm(parent_post_chunks):
                         url = BASE_URLS[item_type] + f'&link_id={chu}'
