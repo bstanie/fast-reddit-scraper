@@ -21,7 +21,7 @@ KEYWORDS = ['BTC', 'Bitcoin', 'ETH', 'Ethereum', 'Tether', 'USDT', 'Polkadot', '
 DESIRED_POST_NUMBER = 0
 current_time = datetime.now()
 END_TIMESTAMP = datetime(current_time.year, current_time.month, current_time.day)
-START_TIMESTAMP = END_TIMESTAMP - timedelta(90)
+START_TIMESTAMP = END_TIMESTAMP - timedelta(1)
 
 
 # -----------------------------------------------------------------------------------
