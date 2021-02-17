@@ -72,7 +72,7 @@ def run():
                         total_comments += len(comments)
                     logger.info(
                         f"URL: {url}\nExtracted {total_comments} '{item_type}' from subreddit "
-                        f"'{subreddit}' with a keyword '{keyword}'")
+                        f"'{subreddit}' with a keyword '{keyword}' for date {datetime_str}")
 
         this_day_timestamp = previous_day_timestamp
         try:
