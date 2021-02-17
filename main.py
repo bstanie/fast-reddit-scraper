@@ -75,7 +75,10 @@ def run():
                         f"'{subreddit}' with a keyword '{keyword}'")
 
         this_day_timestamp = previous_day_timestamp
-        make_report(datetime_str)
+        try:
+            make_report(datetime_str)
+        except Exception as e:
+            logger.exception(e)
 
     end_time = time.time()
     logger.info(f"Total time:  {end_time - start_time} seconds")

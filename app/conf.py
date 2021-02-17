@@ -19,10 +19,9 @@ KEYWORDS = ['BTC', 'Bitcoin', 'ETH', 'Ethereum', 'Tether', 'USDT', 'Polkadot', '
 
 # You can EITHER choose desired posts number (i.e 10000) or limit posts from start date and time
 DESIRED_POST_NUMBER = 0
-current_time = datetime.now()
+current_time = datetime(2021, 2, 7)
 END_TIMESTAMP = datetime(current_time.year, current_time.month, current_time.day)
-START_TIMESTAMP = END_TIMESTAMP - timedelta(1)
-
+START_TIMESTAMP = END_TIMESTAMP - timedelta(60)
 
 # -----------------------------------------------------------------------------------
 
