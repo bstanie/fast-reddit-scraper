@@ -57,7 +57,7 @@ def run():
                 logger.debug(f"Scraping keyword '{keyword}'")
                 item_type = "posts"
                 url = BASE_URLS["posts"]
-                run_search(url, item_type, subreddit, keyword, unix_start, unix_end, file_name)
+                run_extraction(url, item_type, subreddit, keyword, unix_start, unix_end, file_name)
 
                 if SCRAPE_SUBMISSION_COMMENTS is True:
                     total_comments = 0
@@ -67,11 +67,11 @@ def run():
                     parent_post_chunks = make_parent_post_filter_chunks(parent_post_ids)
                     for chu in tqdm.tqdm(parent_post_chunks):
                         url = BASE_URLS[item_type] + f'&link_id={chu}'
-                        comments = run_search(url, item_type, subreddit, keyword, unix_start, unix_end, file_name,
-                                              log=False)
+                        comments = run_extraction(url, item_type, subreddit, keyword, unix_start, unix_end, file_name,
+                                                  log=False)
                         total_comments += len(comments)
                     logger.info(
-                        f"URL: {url}\nExtracted {total_comments} '{item_type}' from subreddit "
+                        f"Extracted {total_comments} '{item_type}' from subreddit "
                         f"'{subreddit}' with a keyword '{keyword}' for date {datetime_str}")
 
         this_day_timestamp = previous_day_timestamp
@@ -122,7 +122,7 @@ def make_parent_post_filter_chunks(ids, chunk_size=20):
     return chunks
 
 
-def run_search(url, item_type, subreddit, keyword, unix_start, unix_end, file_name, log=True):
+def run_extraction(url, item_type, subreddit, keyword, unix_start, unix_end, file_name, log=True):
     logger.debug(f"Scraping type '{item_type}'")
     if DESIRED_POST_NUMBER:
         logger.debug(f"Scraping subreddit '{subreddit}' by max posts: {DESIRED_POST_NUMBER}")
@@ -136,7 +136,7 @@ def run_search(url, item_type, subreddit, keyword, unix_start, unix_end, file_na
                                          endtime_unix=unix_end)
     if log:
         logger.info(
-            f"URL: {url}\nExtracted {len(posts)} '{item_type}' from subreddit '{subreddit}' with a keyword '{keyword}'")
+            f"\nExtracted {len(posts)} '{item_type}' from subreddit '{subreddit}' with a keyword '{keyword}'")
 
     serialize_posts = extract_information(subreddit, item_type, keyword, posts)
 
