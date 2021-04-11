@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 # --------------------CHANGE HERE------------------------------------------
 
 SUBREDDITS = ["all"]
