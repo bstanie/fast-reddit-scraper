@@ -8,7 +8,7 @@ logger = logging.root
 
 
 def make_api_request(base_url, subreddit, keyword, end_timestamp: int = None, start_timestamp: int = None):
-    sleep(1)
+    # sleep(1)
     query = base_url.format(keyword=keyword)
     if subreddit != 'all':
         query += f'&subreddit={subreddit}'
@@ -30,7 +30,6 @@ def get_data_no_starttime(base_url, subreddit, keyword, end_timestamp):
     data = make_api_request(base_url, subreddit, keyword, end_timestamp=end_timestamp)
     if len(data) == 0:
         raise RuntimeError(f"No data was found for the given subreddit: '{subreddit}'")
-    sleep(random.randint(1, 5))
     return data
 
 
@@ -70,7 +69,7 @@ def scrape_from_date_to_date(base_url, subreddit, keyword, starttime_unix: int, 
         else:
             break
 
-    sleep(random.randint(1, 5))
+    sleep(random.randint(1, 4))
     latest_data = list(filter(lambda x: x['created_utc'] > starttime_unix, latest_data))
 
     logger.debug(f"Items scraped: {len(latest_data)}")
@@ -83,6 +82,7 @@ def scrape_by_number_of_posts(base_url, subreddit, keyword, endtime_unix: int, m
     posts_count = 0
     data = []
     while posts_count < max_posts:
+        sleep(random.randint(1, 4))
         if i == 0:
             current_end_timestamp = endtime_unix
         else:
