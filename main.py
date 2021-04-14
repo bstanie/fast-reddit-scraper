@@ -72,7 +72,8 @@ def get_datetime_borders(args):
     if end_date:
         end_timestamp = datetime.datetime.strptime(end_date, "%y-%m-%d")
     else:
-        end_timestamp = datetime.datetime.now()
+        dt_now = datetime.datetime.now()
+        end_timestamp = datetime.datetime(dt_now.year,dt_now.month,dt_now.day)
 
     if start_date:
         start_timestamp = datetime.datetime.strptime(start_date, "%y-%m-%d")
@@ -129,7 +130,7 @@ def run_extractor(start_timestamp, end_timestamp):
                         total_comments += len(comments)
                     logger.info(
                         f"Extracted {total_comments} '{item_type}' from subreddit "
-                        f"'{subreddit}' with a keyword '{keyword}' for date {datetime_str}")
+                        f"'{subreddit}' with a keyword '{keyword}'")
 
         this_day_timestamp = previous_day_timestamp
 
